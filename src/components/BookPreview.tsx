@@ -11,40 +11,54 @@ interface BookPreviewProps {
 export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Ensure proper path resolution
   const getImagePath = (path: string) => {
     // Remove any leading slash and clean the path
     const cleanPath = path.replace(/^\/+/, '').replace(/\/+/g, '/');
-    // Construct the full URL with cache-busting
-    const fullUrl = `${window.location.origin}/${cleanPath}?v=${Date.now()}`;
-    console.log('Path processing:', {
-      originalPath: path,
-      cleanedPath: cleanPath,
-      fullUrl
-    });
+    // Construct the full URL without cache-busting to allow browser caching
+    const fullUrl = `${window.location.origin}/${cleanPath}`;
     return fullUrl;
+  };
+
+  // Preload a single image
+  const preloadImage = (path: string) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = path;
+    });
   };
 
   useEffect(() => {
     if (isOpen && book.previewPages) {
-      // Reset error state when opening preview or changing pages
+      setIsLoading(true);
       setImageError(false);
       
       const currentImagePath = getImagePath(book.previewPages[currentPage]);
-      console.log('Preview Debug:', {
-        bookTitle: book.title,
-        currentPage: currentPage + 1,
-        totalPages: book.previewPages.length,
-        imagePath: currentImagePath,
-        baseUrl: window.location.origin
-      });
+      
+      // Preload current image
+      preloadImage(currentImagePath)
+        .then(() => setIsLoading(false))
+        .catch(() => setImageError(true));
 
-      // Preload the next image if available
-      if (currentPage < book.previewPages.length - 1) {
-        const nextImage = new Image();
-        nextImage.src = getImagePath(book.previewPages[currentPage + 1]);
-      }
+      // Preload adjacent images
+      const preloadAdjacent = async () => {
+        // Preload next image if available
+        if (currentPage < book.previewPages!.length - 1) {
+          const nextImagePath = getImagePath(book.previewPages[currentPage + 1]);
+          preloadImage(nextImagePath).catch(() => {});
+        }
+        // Preload previous image if available
+        if (currentPage > 0) {
+          const prevImagePath = getImagePath(book.previewPages[currentPage - 1]);
+          preloadImage(prevImagePath).catch(() => {});
+        }
+      };
+
+      preloadAdjacent();
     }
   }, [isOpen, currentPage, book.previewPages]);
 
@@ -101,17 +115,26 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
                 <p className="text-lg font-medium">Failed to load preview image</p>
                 <p className="text-sm mt-2">Please try again later</p>
                 <p className="text-xs mt-1 text-gray-400">Page {currentPage + 1} of {book.previewPages.length}</p>
-                <p className="text-xs mt-1 text-gray-400">Path: {getImagePath(book.previewPages[currentPage])}</p>
               </div>
             ) : (
-              <img
-                key={currentPage}
-                src={getImagePath(book.previewPages[currentPage])}
-                alt={`${book.title} preview page ${currentPage + 1}`}
-                className="max-w-full max-h-[calc(90vh-8rem)] object-contain mx-auto"
-                onError={handleImageError}
-                loading="eager"
-              />
+              <>
+                {isLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+                    <div className="animate-pulse text-gray-400">Loading...</div>
+                  </div>
+                )}
+                <img
+                  key={currentPage}
+                  src={getImagePath(book.previewPages[currentPage])}
+                  alt={`${book.title} preview page ${currentPage + 1}`}
+                  className={`max-w-full max-h-[calc(90vh-8rem)] object-contain mx-auto transition-opacity duration-300 ${
+                    isLoading ? 'opacity-0' : 'opacity-100'
+                  }`}
+                  onError={handleImageError}
+                  onLoad={() => setIsLoading(false)}
+                  loading="eager"
+                />
+              </>
             )}
           </div>
 
