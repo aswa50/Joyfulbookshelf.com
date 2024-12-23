@@ -7,7 +7,7 @@ import { CategoryFilter } from './components/CategoryFilter';
 import { LanguageSelector } from './components/LanguageSelector';
 import { CookieConsent } from './components/CookieConsent';
 
-function App() {
+export function App() {
   const [isListView, setIsListView] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<'English' | 'German'>('English');
   const [selectedCategory, setSelectedCategory] = useState<'All' | 'Story Books' | 'Activity Books' | 'Printables'>('All');
@@ -22,12 +22,14 @@ function App() {
       <Navbar isListView={isListView} onViewChange={setIsListView} />
       <Hero className="min-h-[55vh] pt-16" onExplore={handleExplore} />
       <div ref={bookListRef} className="container mx-auto px-4 -mt-16">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-3">
-          <CategoryFilter
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="flex flex-wrap justify-center gap-2">
+            <CategoryFilter
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+            />
+          </div>
+          <div className="flex justify-center">
             <LanguageSelector
               selectedLanguage={selectedLanguage}
               onLanguageChange={setSelectedLanguage}

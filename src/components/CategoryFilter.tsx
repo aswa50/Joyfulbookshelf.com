@@ -6,27 +6,21 @@ interface CategoryFilterProps {
 }
 
 export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryFilterProps) {
-  const categories = ['All', 'Story Books', 'Activity Books', 'Printables'] as const;
+  const categories: Category[] = ['All', 'Story Books', 'Activity Books'];
 
   return (
-    <div className="flex flex-wrap gap-2">
-      {categories.map((category, index) => (
+    <div className="flex flex-wrap justify-center gap-2">
+      {categories.map((category) => (
         <button
           key={category}
           onClick={() => onCategoryChange(category)}
-          className={`px-4 py-2 rounded-full font-medium transition-smooth hover-lift animate-fade-in-up ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
             selectedCategory === category
-              ? 'bg-blue-600 text-white shadow-md transform scale-105 animate-pulse-glow'
-              : 'bg-white text-blue-800 hover:bg-blue-50 hover:shadow-md'
+              ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+              : 'bg-white text-gray-700 hover:bg-gray-100'
           }`}
-          style={{ animationDelay: `${index * 0.1}s` }}
         >
-          {category} {
-            category === 'Story Books' ? '📚' :
-            category === 'Activity Books' ? '✏️' :
-            category === 'Printables' ? '📄' :
-            '⭐'
-          }
+          {category}
         </button>
       ))}
     </div>
