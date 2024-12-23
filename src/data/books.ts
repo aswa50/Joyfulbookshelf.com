@@ -200,9 +200,9 @@ export const books: Book[] = [
     coverImage: '/books/farm-animals-en.jpg',
     rearCoverImage: '/books/farm-animals-en-back.jpg',
     previewPages: [
-      '/books/previews/farm-animals-en-preview1.jpg',
-      '/books/previews/farm-animals-en-preview2.jpg',
-      '/books/previews/farm-animals-en-preview3.jpg'
+      '/books/previews/farm-animals-en-preview1.jfif',
+      '/books/previews/farm-animals-en-preview2.jfif',
+      '/books/previews/farm-animals-en-preview3.jfif'
     ],
     averageRating: 5.0
   },
