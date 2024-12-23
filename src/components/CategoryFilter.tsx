@@ -1,12 +1,14 @@
 import React from 'react';
 
+type Category = 'All' | 'Story Books' | 'Activity Books' | 'Printables';
+
 interface CategoryFilterProps {
-  selectedCategory: 'All' | 'Story Books' | 'Activity Books' | 'Printables';
-  onCategoryChange: (category: 'All' | 'Story Books' | 'Activity Books' | 'Printables') => void;
+  selectedCategory: Category;
+  onCategoryChange: (category: Category) => void;
 }
 
 export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryFilterProps) {
-  const categories: Category[] = ['All', 'Story Books', 'Activity Books'];
+  const categories: Category[] = ['All', 'Story Books', 'Activity Books', 'Printables'];
 
   return (
     <div className="flex flex-wrap justify-center gap-2">

@@ -20,9 +20,9 @@ export function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-purple-900 to-black">
       <Navbar isListView={isListView} onViewChange={setIsListView} />
-      <Hero className="min-h-[55vh] pt-16" onExplore={handleExplore} />
-      <div ref={bookListRef} className="container mx-auto px-4 -mt-16">
-        <div className="flex flex-col gap-4 mb-6">
+      <Hero className="min-h-[45vh] pt-16 mb-24" onExplore={handleExplore} />
+      <div ref={bookListRef} className="container mx-auto px-4 pt-8">
+        <div className="flex flex-col gap-4 mb-8">
           <div className="flex flex-wrap justify-center gap-2">
             <CategoryFilter
               selectedCategory={selectedCategory}
