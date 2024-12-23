@@ -14,6 +14,13 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
 
+  // Reset to first page when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentPage(0);
+    }
+  }, [isOpen]);
+
   // Ensure proper path resolution
   const getImagePath = (path: string) => {
     // Remove any leading slash and clean the path
@@ -65,14 +72,24 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
 
   const handlePrevPage = () => {
     setSlideDirection('right');
-    setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
+    setCurrentPage((prev) => {
+      // Loop back to last page if at the beginning
+      return prev > 0 ? prev - 1 : book.previewPages!.length - 1;
+    });
     setImageError(false);
   };
 
   const handleNextPage = () => {
     setSlideDirection('left');
-    setCurrentPage((prev) => (prev < book.previewPages!.length - 1 ? prev + 1 : prev));
+    setCurrentPage((prev) => {
+      // Loop back to first page if at the end
+      return prev < book.previewPages!.length - 1 ? prev + 1 : 0;
+    });
     setImageError(false);
+  };
+
+  const handleMouseLeave = () => {
+    onClose();
   };
 
   // Reset slide direction after animation
@@ -113,6 +130,7 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
           ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
         `}
         onClick={e => e.stopPropagation()}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Header */}
         <div className="sticky top-0 flex justify-between items-center p-4 border-b bg-white z-20">
@@ -169,10 +187,7 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
               <div className="pointer-events-auto transform transition-transform duration-200 hover:scale-110">
                 <button
                   onClick={handlePrevPage}
-                  disabled={currentPage === 0}
-                  className={`p-2 rounded-full bg-white shadow-lg transition-all duration-200
-                    ${currentPage === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 hover:shadow-xl'}
-                  `}
+                  className="p-2 rounded-full bg-white shadow-lg transition-all duration-200 hover:bg-gray-100 hover:shadow-xl"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -182,10 +197,7 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
               <div className="pointer-events-auto transform transition-transform duration-200 hover:scale-110">
                 <button
                   onClick={handleNextPage}
-                  disabled={currentPage === book.previewPages.length - 1}
-                  className={`p-2 rounded-full bg-white shadow-lg transition-all duration-200
-                    ${currentPage === book.previewPages.length - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 hover:shadow-xl'}
-                  `}
+                  className="p-2 rounded-full bg-white shadow-lg transition-all duration-200 hover:bg-gray-100 hover:shadow-xl"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
