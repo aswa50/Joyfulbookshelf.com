@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Book } from '../data/books';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
@@ -11,6 +11,17 @@ interface BookPreviewProps {
 export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    if (isOpen && book.previewPages) {
+      console.log('Current preview image path:', book.previewPages[currentPage]);
+      // Preload the next image
+      if (currentPage < book.previewPages.length - 1) {
+        const nextImage = new Image();
+        nextImage.src = book.previewPages[currentPage + 1];
+      }
+    }
+  }, [isOpen, currentPage, book.previewPages]);
 
   if (!isOpen || !book.previewPages) return null;
 
@@ -27,6 +38,11 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const handleImageError = () => {
     console.error(`Failed to load image: ${book.previewPages![currentPage]}`);
     setImageError(true);
+  };
+
+  // Ensure the path starts with a forward slash
+  const getImagePath = (path: string) => {
+    return path.startsWith('/') ? path : `/${path}`;
   };
 
   return (
@@ -51,11 +67,11 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
             {imageError ? (
               <div className="text-gray-500 text-center">
                 <p>Failed to load preview image.</p>
-                <p className="text-sm mt-2">Please try again later.</p>
+                <p className="text-sm mt-2">Path: {book.previewPages[currentPage]}</p>
               </div>
             ) : (
               <img
-                src={book.previewPages[currentPage]}
+                src={getImagePath(book.previewPages[currentPage])}
                 alt={`Preview page ${currentPage + 1}`}
                 className="max-w-full max-h-full object-contain"
                 onError={handleImageError}

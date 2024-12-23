@@ -29,9 +29,9 @@ export const books: Book[] = [
     coverImage: '/books/little-racer-en.jpg',
     rearCoverImage: '/books/little-racer-en-back.jpg',
     previewPages: [
-      '/books/previews/little-racer-en-preview1.jpg',
-      '/books/previews/little-racer-en-preview2.jpg',
-      '/books/previews/little-racer-en-preview3.jpg'
+      'books/previews/little-racer-en-preview1.jpg',
+      'books/previews/little-racer-en-preview2.jpg',
+      'books/previews/little-racer-en-preview3.jpg'
     ],
     averageRating: 5.0
   },
