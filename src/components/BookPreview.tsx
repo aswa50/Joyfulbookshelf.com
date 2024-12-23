@@ -12,13 +12,38 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [imageError, setImageError] = useState(false);
 
+  // Ensure proper path resolution
+  const getImagePath = (path: string) => {
+    // Remove any leading slash and clean the path
+    const cleanPath = path.replace(/^\/+/, '').replace(/\/+/g, '/');
+    // Construct the full URL with cache-busting
+    const fullUrl = `${window.location.origin}/${cleanPath}?v=${Date.now()}`;
+    console.log('Path processing:', {
+      originalPath: path,
+      cleanedPath: cleanPath,
+      fullUrl
+    });
+    return fullUrl;
+  };
+
   useEffect(() => {
     if (isOpen && book.previewPages) {
-      console.log('Current preview image path:', book.previewPages[currentPage]);
-      // Preload the next image
+      // Reset error state when opening preview or changing pages
+      setImageError(false);
+      
+      const currentImagePath = getImagePath(book.previewPages[currentPage]);
+      console.log('Preview Debug:', {
+        bookTitle: book.title,
+        currentPage: currentPage + 1,
+        totalPages: book.previewPages.length,
+        imagePath: currentImagePath,
+        baseUrl: window.location.origin
+      });
+
+      // Preload the next image if available
       if (currentPage < book.previewPages.length - 1) {
         const nextImage = new Image();
-        nextImage.src = book.previewPages[currentPage + 1];
+        nextImage.src = getImagePath(book.previewPages[currentPage + 1]);
       }
     }
   }, [isOpen, currentPage, book.previewPages]);
@@ -36,20 +61,26 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   };
 
   const handleImageError = () => {
-    console.error(`Failed to load image: ${book.previewPages![currentPage]}`);
+    const imagePath = getImagePath(book.previewPages[currentPage]);
+    console.error('Failed to load preview image:', {
+      bookTitle: book.title,
+      pageNumber: currentPage + 1,
+      totalPages: book.previewPages.length,
+      imagePath,
+      baseUrl: window.location.origin,
+      windowLocation: window.location.toString(),
+      protocol: window.location.protocol,
+      host: window.location.host,
+      currentPageState: currentPage
+    });
     setImageError(true);
-  };
-
-  // Ensure the path starts with a forward slash
-  const getImagePath = (path: string) => {
-    return path.startsWith('/') ? path : `/${path}`;
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col">
+      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="sticky top-0 flex justify-between items-center p-4 border-b bg-white z-20">
           <h3 className="text-xl font-bold text-gray-900">
             {book.title} - Preview
           </h3>
@@ -61,50 +92,63 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
           </button>
         </div>
 
-        {/* Preview Content */}
-        <div className="relative flex-1 overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
+        {/* Main content wrapper */}
+        <div className="flex-1 relative">
+          {/* Image container */}
+          <div className="absolute inset-0 flex items-center justify-center p-4">
             {imageError ? (
               <div className="text-gray-500 text-center">
-                <p>Failed to load preview image.</p>
-                <p className="text-sm mt-2">Path: {book.previewPages[currentPage]}</p>
+                <p className="text-lg font-medium">Failed to load preview image</p>
+                <p className="text-sm mt-2">Please try again later</p>
+                <p className="text-xs mt-1 text-gray-400">Page {currentPage + 1} of {book.previewPages.length}</p>
+                <p className="text-xs mt-1 text-gray-400">Path: {getImagePath(book.previewPages[currentPage])}</p>
               </div>
             ) : (
               <img
+                key={currentPage}
                 src={getImagePath(book.previewPages[currentPage])}
-                alt={`Preview page ${currentPage + 1}`}
-                className="max-w-full max-h-full object-contain"
+                alt={`${book.title} preview page ${currentPage + 1}`}
+                className="max-w-full max-h-[calc(90vh-8rem)] object-contain mx-auto"
                 onError={handleImageError}
                 loading="eager"
               />
             )}
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="absolute inset-x-0 bottom-0 flex justify-between p-4">
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 0}
-              className={`p-2 rounded-full bg-white shadow-lg ${
-                currentPage === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
-              }`}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === book.previewPages.length - 1}
-              className={`p-2 rounded-full bg-white shadow-lg ${
-                currentPage === book.previewPages.length - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
-              }`}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+          {/* Navigation overlay */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="h-full flex items-center justify-between p-4">
+              {/* Left button */}
+              <div className="pointer-events-auto">
+                <button
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 0}
+                  className={`p-2 rounded-full bg-white shadow-lg ${
+                    currentPage === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
+                  }`}
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Right button */}
+              <div className="pointer-events-auto">
+                <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === book.previewPages.length - 1}
+                  className={`p-2 rounded-full bg-white shadow-lg ${
+                    currentPage === book.previewPages.length - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
+                  }`}
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Page Indicator */}
-        <div className="p-4 border-t text-center text-sm text-gray-600">
+        {/* Footer */}
+        <div className="sticky bottom-0 p-4 border-t text-center text-sm text-gray-600 bg-white z-20">
           Page {currentPage + 1} of {book.previewPages.length}
         </div>
       </div>
