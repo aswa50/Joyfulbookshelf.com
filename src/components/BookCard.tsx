@@ -130,7 +130,7 @@ export function BookCard({ book, isListView }: BookCardProps) {
             <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full justify-center">
               {book.previewPages && (
                 <button
-                  onClick={() => setShowPreview(true)}
+                  onClick={() => setIsPreviewOpen(true)}
                   className="w-32 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
                 >
                   <Eye className="w-3.5 h-3.5 mr-1.5" />
@@ -237,7 +237,7 @@ export function BookCard({ book, isListView }: BookCardProps) {
         <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full justify-center">
           {book.previewPages && (
             <button
-              onClick={() => setShowPreview(true)}
+              onClick={() => setIsPreviewOpen(true)}
               className="w-32 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
             >
               <Eye className="w-3.5 h-3.5 mr-1.5" />
