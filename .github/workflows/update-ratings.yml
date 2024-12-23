@@ -1,0 +1,38 @@
+name: Update Book Ratings
+
+on:
+  schedule:
+    - cron: '0 0 1 */6 *'  # Run every 6 months on the 1st day
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update-ratings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install puppeteer
+
+      - name: Update ratings
+        run: node .github/scripts/update-ratings.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          commit-message: 'Update book ratings from Amazon'
+          title: 'Update book ratings (automated)'
+          body: |
+            This PR updates the book ratings from Amazon.
+            - Automated changes
+            - Please review the changes before merging
+          branch: update-ratings
+          base: main 
