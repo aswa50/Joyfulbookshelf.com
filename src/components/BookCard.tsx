@@ -126,22 +126,20 @@ export function BookCard({ book, isListView }: BookCardProps) {
             <p className="text-sm text-gray-600 mb-2">{book.author}</p>
             <p className="text-sm text-gray-700 mb-4">{book.description}</p>
 
-            <div className="flex gap-3">
-              {book.category === 'Story Books' && (
-                <button
-                  onClick={() => setIsPreviewOpen(true)}
-                  className="flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md"
-                >
-                  <span className="inline-flex items-center justify-center whitespace-nowrap">
-                    Sneak Peek <span className="ml-1">👀</span>
-                  </span>
-                </button>
-              )}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => setIsPreviewOpen(true)}
+                className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-sm sm:text-base"
+              >
+                <span className="inline-flex items-center justify-center whitespace-nowrap">
+                  Sneak Peek <span className="ml-1">👀</span>
+                </span>
+              </button>
               <a
                 href={book.amazonLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-center"
+                className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-center text-sm sm:text-base"
               >
                 <span className="inline-flex items-center justify-center whitespace-nowrap">
                   Buy on Amazon <span className="ml-1">🛍️</span>
@@ -235,22 +233,20 @@ export function BookCard({ book, isListView }: BookCardProps) {
         <p className="text-sm text-gray-700 mb-4 line-clamp-2">{book.description}</p>
 
         {/* Buttons */}
-        <div className="flex gap-3">
-          {book.category === 'Story Books' && (
-            <button
-              onClick={() => setIsPreviewOpen(true)}
-              className="flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-md"
-            >
-              <span className="inline-flex items-center justify-center whitespace-nowrap">
-                Sneak Peek <span className="ml-1">👀</span>
-              </span>
-            </button>
-          )}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            onClick={() => setIsPreviewOpen(true)}
+            className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-sm sm:text-base"
+          >
+            <span className="inline-flex items-center justify-center whitespace-nowrap">
+              Sneak Peek <span className="ml-1">👀</span>
+            </span>
+          </button>
           <a
             href={book.amazonLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-md text-center"
+            className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-center text-sm sm:text-base"
           >
             <span className="inline-flex items-center justify-center whitespace-nowrap">
               Buy on Amazon <span className="ml-1">🛍️</span>

@@ -27,27 +27,19 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
     { 
       image: book.coverImage, 
       text: "Front Cover",
-      description: "Begin your journey with this magical story!"
+      description: "Begin your journey with this magical book!"
     },
-    { 
-      image: `/books/previews/${book.id}/preview1.jpg`, 
-      text: "Page 1",
-      description: "The adventure begins..."
-    },
-    { 
-      image: `/books/previews/${book.id}/preview2.jpg`, 
-      text: "Page 2",
-      description: "Continue the exciting journey..."
-    },
-    { 
-      image: `/books/previews/${book.id}/preview3.jpg`, 
-      text: "Page 3",
-      description: "Discover more surprises..."
-    },
+    ...(book.previewPages?.map((page, index) => ({
+      image: page,
+      text: `Page ${index + 1}`,
+      description: book.category === 'Story Books' 
+        ? "Continue the magical journey..." 
+        : "Get inspired with these beautiful illustrations!"
+    })) || []),
     { 
       image: book.rearCoverImage, 
       text: "Back Cover",
-      description: "Want to know how the story ends? Get the full book!"
+      description: "Want to know more? Get the full book!"
     }
   ];
 
