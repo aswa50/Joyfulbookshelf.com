@@ -179,3 +179,71 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
 }
+
+/* Book page turn animation */
+@keyframes page-turn-right {
+  0% {
+    transform: rotateY(0deg);
+    transform-origin: left;
+  }
+  100% {
+    transform: rotateY(-180deg);
+    transform-origin: left;
+  }
+}
+
+@keyframes page-turn-left {
+  0% {
+    transform: rotateY(180deg);
+    transform-origin: right;
+  }
+  100% {
+    transform: rotateY(0deg);
+    transform-origin: right;
+  }
+}
+
+.page-turn-right {
+  animation: page-turn-right 0.6s ease-in-out forwards;
+}
+
+.page-turn-left {
+  animation: page-turn-left 0.6s ease-in-out forwards;
+}
+
+.page-container {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+.page {
+  backface-visibility: hidden;
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Add shadow effect for page turn */
+.page-shadow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  pointer-events: none;
+}
+
+.turning .page-shadow {
+  opacity: 1;
+}
+
+/* Smooth transition for page content */
+.page-content {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.turning .page-content {
+  opacity: 0.8;
+}

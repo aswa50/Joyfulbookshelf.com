@@ -35,21 +35,23 @@ export function Hero({ className = '', onExplore }: HeroProps) {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto px-2 md:px-4">
-          <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 animate-fade-in-up bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <div className="text-center relative pt-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in-up bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent py-2 mb-4">
               Magical World of Books ✨
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto animate-fade-in-up bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent" style={{ animationDelay: '0.2s' }}>
+            <p className="inline-block text-base sm:text-lg md:text-xl lg:text-2xl mb-6 animate-fade-in-up bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent px-4" style={{ animationDelay: '0.2s' }}>
               Creating enchanting stories that spark imagination and inspire young minds
             </p>
-            <div className="flex justify-center gap-4 md:gap-8 mb-8 md:mb-12">
+            <div className="flex justify-center gap-4 md:gap-8 mb-6">
               <div className="text-center animate-fade-in-up hover-lift" style={{ animationDelay: '0.4s' }}>
-                <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">20 Books</div>
+                <div className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  20+ Books
+                </div>
               </div>
             </div>
             <button
               onClick={onExplore}
-              className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-base md:text-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 animate-fade-in-up animate-pulse-glow"
+              className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-8 py-3 rounded-full text-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 animate-fade-in-up animate-pulse-glow"
               style={{ animationDelay: '0.8s' }}
             >
               Explore Books ✨

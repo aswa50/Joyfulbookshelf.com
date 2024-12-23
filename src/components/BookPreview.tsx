@@ -126,8 +126,12 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
     if (currentPage < previewPages.length - 1 && !isFlipping) {
       setDirection('next');
       setIsFlipping(true);
-      setCurrentPage(prev => prev + 1);
-      setTimeout(() => setIsFlipping(false), 700);
+      setTimeout(() => {
+        setCurrentPage(prev => prev + 1);
+        setTimeout(() => {
+          setIsFlipping(false);
+        }, 100);
+      }, 300);
     }
   };
 
@@ -135,8 +139,12 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
     if (currentPage > 0 && !isFlipping) {
       setDirection('prev');
       setIsFlipping(true);
-      setCurrentPage(prev => prev - 1);
-      setTimeout(() => setIsFlipping(false), 700);
+      setTimeout(() => {
+        setCurrentPage(prev => prev - 1);
+        setTimeout(() => {
+          setIsFlipping(false);
+        }, 100);
+      }, 300);
     }
   };
 
@@ -249,7 +257,7 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
             {/* Flipbook container */}
             <div 
               ref={containerRef}
-              className={`relative bg-white rounded-xl shadow-lg overflow-hidden
+              className={`relative bg-white rounded-xl shadow-lg overflow-hidden page-container
                 ${isFullscreen ? 'h-[calc(100vh-12rem)]' : 'aspect-[4/3]'}`}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -260,24 +268,32 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
             >
               {/* Page display */}
               <div 
-                className={`absolute inset-0 transition-all duration-700 ease-in-out transform perspective-1000
-                  ${isFlipping ? direction === 'next' ? 'flip-enter' : 'flip-exit' : ''}`}
+                className={`absolute inset-0 page ${
+                  isFlipping 
+                    ? direction === 'next' 
+                      ? 'page-turn-right' 
+                      : 'page-turn-left'
+                    : ''
+                } ${isFlipping ? 'turning' : ''}`}
                 style={{
                   transform: `scale(${zoom}) rotate(${rotation}deg)`,
                   transformOrigin: 'center',
-                  transition: 'transform 0.3s ease-out',
+                  transition: isFlipping ? 'none' : 'transform 0.3s ease-out',
                   cursor: zoom > 1 ? 'grab' : 'default',
                   ...(zoom > 1 && {
                     transform: `scale(${zoom}) rotate(${rotation}deg) translate(${dragOffset.x}px, ${dragOffset.y}px)`,
                   }),
                 }}
               >
-                <img
-                  src={previewPages[currentPage].image}
-                  alt={`Preview page ${currentPage + 1}`}
-                  className="w-full h-full object-contain"
-                  draggable={false}
-                />
+                <div className="page-content h-full w-full flex items-center justify-center">
+                  <img
+                    src={previewPages[currentPage].image}
+                    alt={`Preview page ${currentPage + 1}`}
+                    className="max-w-full max-h-full w-auto h-auto object-contain"
+                    draggable={false}
+                  />
+                </div>
+                <div className="page-shadow"></div>
               </div>
 
               {/* Page overlay with description */}

@@ -3,12 +3,12 @@ import { books } from '../data/books';
 import { BookCard } from './BookCard';
 
 interface BookListProps {
-  language: 'English' | 'German';
-  category: 'All' | 'Story Books' | 'Activity Books' | 'Printables';
   isListView: boolean;
+  language?: 'English' | 'German';
+  category?: 'All' | 'Story Books' | 'Activity Books' | 'Printables';
 }
 
-export function BookList({ language, category, isListView }: BookListProps) {
+export function BookList({ isListView, language = 'English', category = 'All' }: BookListProps) {
   const filteredBooks = books.filter(book => {
     if (category === 'All') {
       return book.language === language;
