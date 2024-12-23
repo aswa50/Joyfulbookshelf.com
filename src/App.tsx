@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CategoryFilter } from './components/CategoryFilter';
 import { LanguageSelector } from './components/LanguageSelector';
+import { CookieConsent } from './components/CookieConsent';
 
 function App() {
   const [isListView, setIsListView] = useState(false);
@@ -40,6 +41,7 @@ function App() {
         />
       </div>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
