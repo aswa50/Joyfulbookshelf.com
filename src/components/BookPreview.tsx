@@ -10,15 +10,23 @@ interface BookPreviewProps {
 
 export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   if (!isOpen || !book.previewPages) return null;
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
+    setImageError(false);
   };
 
   const handleNextPage = () => {
     setCurrentPage((prev) => (prev < book.previewPages!.length - 1 ? prev + 1 : prev));
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    console.error(`Failed to load image: ${book.previewPages![currentPage]}`);
+    setImageError(true);
   };
 
   return (
@@ -40,11 +48,20 @@ export function BookPreview({ book, isOpen, onClose }: BookPreviewProps) {
         {/* Preview Content */}
         <div className="relative flex-1 overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src={book.previewPages[currentPage]}
-              alt={`Preview page ${currentPage + 1}`}
-              className="max-w-full max-h-full object-contain"
-            />
+            {imageError ? (
+              <div className="text-gray-500 text-center">
+                <p>Failed to load preview image.</p>
+                <p className="text-sm mt-2">Please try again later.</p>
+              </div>
+            ) : (
+              <img
+                src={book.previewPages[currentPage]}
+                alt={`Preview page ${currentPage + 1}`}
+                className="max-w-full max-h-full object-contain"
+                onError={handleImageError}
+                loading="eager"
+              />
+            )}
           </div>
 
           {/* Navigation Buttons */}
