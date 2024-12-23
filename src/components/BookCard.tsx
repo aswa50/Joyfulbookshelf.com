@@ -75,6 +75,9 @@ export function BookCard({ book, isListView }: BookCardProps) {
                       src={book.coverImage}
                       alt={`${book.title} front cover`}
                       className="w-full h-full object-contain"
+                      loading="lazy"
+                      width="400"
+                      height="600"
                     />
                   </div>
                 </div>
@@ -87,6 +90,9 @@ export function BookCard({ book, isListView }: BookCardProps) {
                       src={book.rearCoverImage}
                       alt={`${book.title} back cover`}
                       className="w-full h-full object-contain"
+                      loading="lazy"
+                      width="400"
+                      height="600"
                     />
                   </div>
                 </div>
@@ -167,6 +173,9 @@ export function BookCard({ book, isListView }: BookCardProps) {
                   src={book.coverImage}
                   alt={`${book.title} front cover`}
                   className="w-full h-full object-contain"
+                  loading="lazy"
+                  width="400"
+                  height="600"
                 />
               </div>
             </div>
@@ -180,6 +189,9 @@ export function BookCard({ book, isListView }: BookCardProps) {
                   src={book.rearCoverImage}
                   alt={`${book.title} back cover`}
                   className="w-full h-full object-contain"
+                  loading="lazy"
+                  width="400"
+                  height="600"
                 />
               </div>
             </div>

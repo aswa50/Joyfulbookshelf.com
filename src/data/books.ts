@@ -32,7 +32,7 @@ export const books: Book[] = [
     amazonLink: "https://www.amazon.com/Little-Racer-Zooming-Childrens-colorful-ebook/dp/B0CR4MDT5K",
     coverImage: "/books/little-racer-en.jpg",
     rearCoverImage: "/books/little-racer-en-back.jpg",
-    averageRating: 4.5,
+    averageRating: 5.0,
     reviews: [
       {
         author: "Sarah M.",
@@ -42,7 +42,7 @@ export const books: Book[] = [
       },
       {
         author: "John D.",
-        rating: 4,
+        rating: 5,
         text: "Nice book with colorful illustrations. My kids enjoy the racing theme and it helps them learn numbers.",
         date: "March 10, 2024"
       },
@@ -64,7 +64,7 @@ export const books: Book[] = [
     amazonLink: "https://www.amazon.de/kleine-Rennfahrer-Kinderbuch-Rennauto-Geschichte-ebook/dp/B0CR4KXVZX/",
     coverImage: "/books/little-racer-de.jpg",
     rearCoverImage: "/books/little-racer-de-back.jpg",
-    averageRating: 4.7,
+    averageRating: 5.0,
     reviews: [
       {
         author: "Maria S.",
@@ -84,7 +84,7 @@ export const books: Book[] = [
     amazonLink: "https://www.amazon.com/LITTLE-ASTRONAUT-Childrens-Adventure-Discovering-ebook/dp/B0D5WJLMYW",
     coverImage: "/books/astronaut-en.jpg",
     rearCoverImage: "/books/astronaut-en-back.jpg",
-    averageRating: 4.8,
+    averageRating: 5.0,
     reviews: [
       {
         author: "Michael P.",
@@ -104,7 +104,7 @@ export const books: Book[] = [
     amazonLink: "https://www.amazon.com/KLEINER-ASTRONAUT-Sonnensystem-Kinderbuch-Sonnensystems-ebook/dp/B0DL3R7QPL",
     coverImage: "/books/astronaut-de.jpg",
     rearCoverImage: "/books/astronaut-de-back.jpg",
-    averageRating: 4.6,
+    averageRating: 5.0,
     reviews: [
       {
         author: "Thomas K.",
@@ -124,7 +124,16 @@ export const books: Book[] = [
     language: "English",
     amazonLink: "https://amzn.eu/d/h5Qp3QX",
     coverImage: "/books/vehicles-en.jpg",
-    rearCoverImage: "/books/vehicles-en-back.jpg"
+    rearCoverImage: "/books/vehicles-en-back.jpg",
+    averageRating: 5.0,
+    reviews: [
+      {
+        author: "Lisa R.",
+        rating: 5,
+        text: "Perfect coloring book for vehicle-loving kids! The illustrations are detailed and engaging.",
+        date: "March 15, 2024"
+      }
+    ]
   },
   {
     id: 6,
@@ -135,7 +144,16 @@ export const books: Book[] = [
     language: "German",
     amazonLink: "https://www.amazon.de/Fahrzeuge-Malbuch-Kinder-Jahren-Aktivit%C3%A4tsbuch/dp/B0CQXV8MQD/",
     coverImage: "/books/vehicles-de.jpg",
-    rearCoverImage: "/books/vehicles-de-back.jpg"
+    rearCoverImage: "/books/vehicles-de-back.jpg",
+    averageRating: 5.0,
+    reviews: [
+      {
+        author: "Anna B.",
+        rating: 5,
+        text: "Tolles Malbuch mit vielen verschiedenen Fahrzeugen. Mein Kind ist begeistert!",
+        date: "March 14, 2024"
+      }
+    ]
   },
   {
     id: 7,
@@ -146,7 +164,16 @@ export const books: Book[] = [
     language: "English",
     amazonLink: "https://www.amazon.com/COLORING-BOOK-SPACESHIPS-Evolution-Spaceships/dp/B0CY4RZQ94",
     coverImage: "/books/rockets-en.jpg",
-    rearCoverImage: "/books/rockets-en-back.jpg"
+    rearCoverImage: "/books/rockets-en-back.jpg",
+    averageRating: 5.0,
+    reviews: [
+      {
+        author: "David M.",
+        rating: 5,
+        text: "Amazing space-themed coloring book! The rocket designs are creative and fun to color.",
+        date: "March 13, 2024"
+      }
+    ]
   },
   {
     id: 8,
@@ -157,6 +184,15 @@ export const books: Book[] = [
     language: "German",
     amazonLink: "https://a.co/d/gXZ8jcq",
     coverImage: "/books/rockets-de.jpg",
-    rearCoverImage: "/books/rockets-de-back.jpg"
+    rearCoverImage: "/books/rockets-de-back.jpg",
+    averageRating: 5.0,
+    reviews: [
+      {
+        author: "Stefan W.",
+        rating: 5,
+        text: "Fantastisches Malbuch mit kreativen Raketendesigns. Perfekt für kleine Weltraumfans!",
+        date: "March 12, 2024"
+      }
+    ]
   }
 ];

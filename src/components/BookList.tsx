@@ -17,7 +17,10 @@ export function BookList({ language, category, isListView }: BookListProps) {
   });
 
   return (
-    <div className={isListView ? "space-y-6" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}>
+    <div className={isListView 
+      ? "space-y-4 md:space-y-6" 
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+    }>
       {filteredBooks.map((book) => (
         <BookCard 
           key={book.id} 
@@ -25,6 +28,11 @@ export function BookList({ language, category, isListView }: BookListProps) {
           isListView={isListView}
         />
       ))}
+      {filteredBooks.length === 0 && (
+        <div className="col-span-full text-center py-12">
+          <p className="text-lg text-gray-600">No books found in this category.</p>
+        </div>
+      )}
     </div>
   );
 }
