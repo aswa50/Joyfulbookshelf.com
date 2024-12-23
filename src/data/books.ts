@@ -32,6 +32,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/ilAt5rO",
     coverImage: "/books/little-racer-en.jpg",
     rearCoverImage: "/books/little-racer-en-back.jpg",
+    previewPages: [
+      "/books/previews/little-racer-en-preview1.jpg",
+      "/books/previews/little-racer-en-preview2.jpg",
+      "/books/previews/little-racer-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -52,6 +57,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/icWWiOm",
     coverImage: "/books/little-racer-de.jpg",
     rearCoverImage: "/books/little-racer-de-back.jpg",
+    previewPages: [
+      "/books/previews/little-racer-de-preview1.jpg",
+      "/books/previews/little-racer-de-preview2.jpg",
+      "/books/previews/little-racer-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -72,6 +82,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/fRUC3YY",
     coverImage: "/books/astronaut-en.jpg",
     rearCoverImage: "/books/astronaut-en-back.jpg",
+    previewPages: [
+      "/books/previews/astronaut-en-preview1.jpg",
+      "/books/previews/astronaut-en-preview2.jpg",
+      "/books/previews/astronaut-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -92,6 +107,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/8QIrYT4",
     coverImage: "/books/astronaut-de.jpg",
     rearCoverImage: "/books/astronaut-de-back.jpg",
+    previewPages: [
+      "/books/previews/astronaut-de-preview1.jpg",
+      "/books/previews/astronaut-de-preview2.jpg",
+      "/books/previews/astronaut-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -113,6 +133,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/aw04c9z",
     coverImage: "/books/boats-en.jpg",
     rearCoverImage: "/books/boats-en-back.jpg",
+    previewPages: [
+      "/books/previews/boats-en-preview1.jpg",
+      "/books/previews/boats-en-preview2.jpg",
+      "/books/previews/boats-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -133,6 +158,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/gLyTwwF",
     coverImage: "/books/boats-de.jpg",
     rearCoverImage: "/books/boats-de-back.jpg",
+    previewPages: [
+      "/books/previews/boats-de-preview1.jpg",
+      "/books/previews/boats-de-preview2.jpg",
+      "/books/previews/boats-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -153,6 +183,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/iQY33LO",
     coverImage: "/books/rockets-en.jpg",
     rearCoverImage: "/books/rockets-en-back.jpg",
+    previewPages: [
+      "/books/previews/rockets-en-preview1.png",
+      "/books/previews/rockets-en-preview2.png",
+      "/books/previews/rockets-en-preview3.png"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -173,6 +208,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/3kndbqq",
     coverImage: "/books/rockets-de.jpg",
     rearCoverImage: "/books/rockets-de-back.jpg",
+    previewPages: [
+      "/books/previews/rockets-de-preview1.png",
+      "/books/previews/rockets-de-preview2.png",
+      "/books/previews/rockets-de-preview3.png"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -193,6 +233,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/cK3azFP",
     coverImage: "/books/vehicles-en.jpg",
     rearCoverImage: "/books/vehicles-en-back.jpg",
+    previewPages: [
+      "/books/previews/vehicles-en-preview1.jpg",
+      "/books/previews/vehicles-en-preview2.jpg",
+      "/books/previews/vehicles-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -213,6 +258,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/eXFIyAW",
     coverImage: "/books/vehicles-de.jpg",
     rearCoverImage: "/books/vehicles-de-back.jpg",
+    previewPages: [
+      "/books/previews/vehicles-de-preview1.jpg",
+      "/books/previews/vehicles-de-preview2.jpg",
+      "/books/previews/vehicles-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -233,6 +283,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/5y8UZsD",
     coverImage: "/books/farm-animals-en.jpg",
     rearCoverImage: "/books/farm-animals-en-back.jpg",
+    previewPages: [
+      "/books/previews/farm-animals-en-preview1.jpg",
+      "/books/previews/farm-animals-en-preview2.jpg",
+      "/books/previews/farm-animals-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -253,6 +308,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/77Oq3jg",
     coverImage: "/books/farm-animals-de.jpg",
     rearCoverImage: "/books/farm-animals-de-back.jpg",
+    previewPages: [
+      "/books/previews/farm-animals-de-preview1.jpg",
+      "/books/previews/farm-animals-de-preview2.jpg",
+      "/books/previews/farm-animals-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -273,6 +333,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/1SFenuH",
     coverImage: "/books/wildanimals-en.jpg",
     rearCoverImage: "/books/wildanimals-en-back.jpg",
+    previewPages: [
+      "/books/previews/wildanimals-en-preview1.jpg",
+      "/books/previews/wildanimals-en-preview2.jpg",
+      "/books/previews/wildanimals-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -293,6 +358,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/3qcC8T2",
     coverImage: "/books/wildanimals-de.jpg",
     rearCoverImage: "/books/wildanimals-de-back.jpg",
+    previewPages: [
+      "/books/previews/wildanimals-de-preview1.jpg",
+      "/books/previews/wildanimals-de-preview2.jpg",
+      "/books/previews/wildanimals-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -313,6 +383,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/dz7fNAI",
     coverImage: "/books/wildanimals-part2-en.jpg",
     rearCoverImage: "/books/wildanimals-part2-en-back.jpg",
+    previewPages: [
+      "/books/previews/wildanimals-part2-en-preview1.jpg",
+      "/books/previews/wildanimals-part2-en-preview2.jpg",
+      "/books/previews/wildanimals-part2-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -333,6 +408,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/5DhaqLS",
     coverImage: "/books/wildanimals-part2-de.jpg",
     rearCoverImage: "/books/wildanimals-part2-de-back.jpg",
+    previewPages: [
+      "/books/previews/wildanimals-part2-de-preview1.jpg",
+      "/books/previews/wildanimals-part2-de-preview2.jpg",
+      "/books/previews/wildanimals-part2-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -353,6 +433,11 @@ export const books: Book[] = [
     amazonLink: "https://a.co/d/9vsoMCy",
     coverImage: "/books/insects-en.jpg",
     rearCoverImage: "/books/insects-en-back.jpg",
+    previewPages: [
+      "/books/previews/insects-en-preview1.jpg",
+      "/books/previews/insects-en-preview2.jpg",
+      "/books/previews/insects-en-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
@@ -373,6 +458,11 @@ export const books: Book[] = [
     amazonLink: "https://amzn.eu/d/aFuTh32",
     coverImage: "/books/insects-de.jpg",
     rearCoverImage: "/books/insects-de-back.jpg",
+    previewPages: [
+      "/books/previews/insects-de-preview1.jpg",
+      "/books/previews/insects-de-preview2.jpg",
+      "/books/previews/insects-de-preview3.jpg"
+    ],
     averageRating: 5.0,
     reviews: [
       {
