@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Book } from '../data/books';
 import { BookPreview } from './BookPreview';
 import { Star, StarHalf } from 'lucide-react';
+import { Eye, ShoppingCart } from 'lucide-react';
 
 interface BookCardProps {
   book: Book;
@@ -126,24 +127,24 @@ export function BookCard({ book, isListView }: BookCardProps) {
             <p className="text-sm text-gray-600 mb-2">{book.author}</p>
             <p className="text-sm text-gray-700 mb-4">{book.description}</p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => setIsPreviewOpen(true)}
-                className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-sm sm:text-base"
-              >
-                <span className="inline-flex items-center justify-center whitespace-nowrap">
-                  Sneak Peek <span className="ml-1">👀</span>
-                </span>
-              </button>
+            <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full justify-center">
+              {book.previewPages && (
+                <button
+                  onClick={() => setShowPreview(true)}
+                  className="w-32 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
+                >
+                  <Eye className="w-3.5 h-3.5 mr-1.5" />
+                  Sneak Peek
+                </button>
+              )}
               <a
                 href={book.amazonLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-center text-sm sm:text-base"
+                className="w-32 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
               >
-                <span className="inline-flex items-center justify-center whitespace-nowrap">
-                  Buy on Amazon <span className="ml-1">🛍️</span>
-                </span>
+                <ShoppingCart className="w-3.5 h-3.5 mr-1.5" />
+                Buy on Amazon
               </a>
             </div>
           </div>
@@ -233,24 +234,24 @@ export function BookCard({ book, isListView }: BookCardProps) {
         <p className="text-sm text-gray-700 mb-4 line-clamp-2">{book.description}</p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={() => setIsPreviewOpen(true)}
-            className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-sm sm:text-base"
-          >
-            <span className="inline-flex items-center justify-center whitespace-nowrap">
-              Sneak Peek <span className="ml-1">👀</span>
-            </span>
-          </button>
+        <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full justify-center">
+          {book.previewPages && (
+            <button
+              onClick={() => setShowPreview(true)}
+              className="w-32 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
+            >
+              <Eye className="w-3.5 h-3.5 mr-1.5" />
+              Sneak Peek
+            </button>
+          )}
           <a
             href={book.amazonLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:flex-1 bg-gradient-to-r from-blue-400 to-cyan-400 hover:from-blue-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg transition-all transform hover:scale-105 shadow-md text-center text-sm sm:text-base"
+            className="w-32 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-xs font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center whitespace-nowrap"
           >
-            <span className="inline-flex items-center justify-center whitespace-nowrap">
-              Buy on Amazon <span className="ml-1">🛍️</span>
-            </span>
+            <ShoppingCart className="w-3.5 h-3.5 mr-1.5" />
+            Buy on Amazon
           </a>
         </div>
       </div>
